@@ -30,6 +30,7 @@
 
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import harbour.simplydo 1.0
 import "pages"
 
 ApplicationWindow
@@ -38,6 +39,10 @@ ApplicationWindow
     cover: Qt.resolvedUrl("cover/CoverPage.qml")
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
+
+    MyModel {
+        id: listModel
+    }
 }
 
 

@@ -5,7 +5,7 @@ Page {
     id: page
 
     ListModel {
-        id: listModel
+        id: listModel2
 
         ListElement {
             text: "A1"
@@ -22,7 +22,7 @@ Page {
     }
 
     SilicaListView {
-        model: myModel1
+        model: listModel
         anchors.fill: parent
         delegate: BackgroundItem {
             Label { text: text11 }

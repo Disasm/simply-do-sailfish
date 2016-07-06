@@ -46,13 +46,16 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    QGuiApplication* app = SailfishApp::application(argc, argv);
+    qmlRegisterType<MyModel>("harbour.simplydo", 1, 0, "MyModel");
+
+    /*QGuiApplication* app = SailfishApp::application(argc, argv);
     QQuickView* view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo("qml/SimplyDo.qml"));
 //    qmlRegisterType<MyModel>("com.mycompany.qmlcomponents", 1, 0, "MyModel");
     view->rootContext()->setContextProperty("myModel1", new MyModel());
-    view->show();
+    view->show();*/
+    return SailfishApp::main(argc, argv);
 
-    return app->exec();
+    //return app->exec();
 }
 

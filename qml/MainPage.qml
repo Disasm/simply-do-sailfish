@@ -5,7 +5,7 @@ Page {
     id: page
 
     ListModel {
-        id: listModel
+        id: mainListModel
 
         ListElement {
             text: "TODO List 1"
@@ -38,7 +38,7 @@ Page {
         text: "Add"
     }
     SilicaListView {
-        model: listModel
+        model: mainListModel
         anchors.top: btnAdd.bottom
         anchors.bottom: parent.bottom
         width: parent.width
@@ -46,7 +46,7 @@ Page {
             //width: view.width
             Label { text: model.text }
             onClicked: {
-                myModel1.set_me(model.index);
+                listModel.set_me(model.index);
                 pageStack.push(Qt.resolvedUrl("ListPage.qml"))
             }
         }
