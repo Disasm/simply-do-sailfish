@@ -33,7 +33,7 @@
 #endif
 
 #include <sailfishapp.h>
-
+#include "MyModel.h"
 
 int main(int argc, char *argv[])
 {
@@ -46,6 +46,13 @@ int main(int argc, char *argv[])
     //
     // To display the view, call "show()" (will show fullscreen on device).
 
-    return SailfishApp::main(argc, argv);
+    QGuiApplication* app = SailfishApp::application(argc, argv);
+    QQuickView* view = SailfishApp::createView();
+    view->setSource(SailfishApp::pathTo("qml/SimplyDo.qml"));
+//    qmlRegisterType<MyModel>("com.mycompany.qmlcomponents", 1, 0, "MyModel");
+    view->rootContext()->setContextProperty("myModel1", new MyModel());
+    view->show();
+
+    return app->exec();
 }
 
