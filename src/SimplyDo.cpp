@@ -28,34 +28,14 @@
   SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 */
 
-#ifdef QT_QML_DEBUG
 #include <QtQuick>
-#endif
-
 #include <sailfishapp.h>
 #include "MyModel.h"
 
 int main(int argc, char *argv[])
 {
-    // SailfishApp::main() will display "qml/template.qml", if you need more
-    // control over initialization, you can use:
-    //
-    //   - SailfishApp::application(int, char *[]) to get the QGuiApplication *
-    //   - SailfishApp::createView() to get a new QQuickView * instance
-    //   - SailfishApp::pathTo(QString) to get a QUrl to a resource file
-    //
-    // To display the view, call "show()" (will show fullscreen on device).
-
     qmlRegisterType<MyModel>("harbour.simplydo", 1, 0, "MyModel");
 
-    /*QGuiApplication* app = SailfishApp::application(argc, argv);
-    QQuickView* view = SailfishApp::createView();
-    view->setSource(SailfishApp::pathTo("qml/SimplyDo.qml"));
-//    qmlRegisterType<MyModel>("com.mycompany.qmlcomponents", 1, 0, "MyModel");
-    view->rootContext()->setContextProperty("myModel1", new MyModel());
-    view->show();*/
     return SailfishApp::main(argc, argv);
-
-    //return app->exec();
 }
 
