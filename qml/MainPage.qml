@@ -5,7 +5,7 @@ Page {
     id: page
 
     ListModel {
-        id: mainListModel
+        id: mainModel
 
         ListElement {
             text: "TODO List 1"
@@ -23,35 +23,58 @@ Page {
 
 
     TextField {
-        label: "Text field"
         anchors.top: parent.top
         anchors.left: parent.left
         anchors.right: btnAdd.left
 
-        placeholderText: "Type here"
-        focus: true
+        placeholderText: "New List Name"
+        focus: false
     }
     Button {
         id: btnAdd
         anchors.top: parent.top
         anchors.right: parent.right
+        preferredWidth: Theme.buttonWidthSmall
         text: "Add"
     }
     SilicaListView {
-        model: mainListModel
+        model: mainModel
         anchors.top: btnAdd.bottom
         anchors.bottom: parent.bottom
         width: parent.width
-        delegate: BackgroundItem {
+        delegate: ListItem {
+            id: listItem
+            menu: contextMenuComponent
             //width: view.width
-            Label { text: model.text }
+
             onClicked: {
                 listModel.set_me(model.index);
                 pageStack.push(Qt.resolvedUrl("ListPage.qml"))
             }
+
+            Label {
+                text: model.text
+            }
+
+            Component {
+                id: contextMenuComponent
+                ContextMenu {
+                    MenuItem {
+                        text: "Edit"
+                    }
+                    MenuItem {
+                        text: "Delete"
+                    }
+                }
+            }
+        }
+
+        PullDownMenu {
+            MenuItem {
+                text: "Settings"
+            }
         }
     }
-
 
 
 /*    Column {
