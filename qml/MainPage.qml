@@ -23,24 +23,26 @@ Page {
 
 
     TextField {
-        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: btnAdd.left
 
         placeholderText: "New List Name"
         focus: false
     }
+
     Button {
         id: btnAdd
-        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.right: parent.right
         preferredWidth: Theme.buttonWidthSmall
         text: "Add"
     }
+
     SilicaListView {
         model: mainModel
-        anchors.top: btnAdd.bottom
-        anchors.bottom: parent.bottom
+        anchors.top: parent.top
+        anchors.bottom: btnAdd.top
         width: parent.width
         delegate: ListItem {
             id: listItem

@@ -5,7 +5,7 @@ Page {
     id: page
 
     TextField {
-        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: btnAdd.left
 
@@ -15,7 +15,7 @@ Page {
 
     Button {
         id: btnAdd
-        anchors.top: parent.top
+        anchors.bottom: parent.bottom
         anchors.right: parent.right
         preferredWidth: Theme.buttonWidthSmall
         text: "Add"
@@ -23,8 +23,8 @@ Page {
 
     SilicaListView {
         model: listModel
-        anchors.top: btnAdd.bottom
-        anchors.bottom: parent.bottom
+        anchors.bottom: btnAdd.top
+        anchors.top: parent.top
         width: parent.width
 
         delegate: ListItem {
