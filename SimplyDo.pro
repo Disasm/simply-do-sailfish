@@ -12,9 +12,10 @@
 # The name of your application
 TARGET = SimplyDo
 
-CONFIG += sailfishapp
+CONFIG += sailfishapp sql
 
-SOURCES += src/SimplyDo.cpp
+SOURCES += src/SimplyDo.cpp \
+    src/DataManager.cpp
 
 OTHER_FILES += qml/SimplyDo.qml \
     qml/cover/CoverPage.qml \
@@ -37,4 +38,11 @@ CONFIG += sailfishapp_i18n
 # following TRANSLATIONS line. And also do not forget to
 # modify the localized app name in the the .desktop file.
 TRANSLATIONS += translations/SimplyDo-de.ts
+
+HEADERS += \
+    src/DataManager.h \
+    src/itemdesc.h
+
+DISTFILES += \
+    qml/MainPage.qml
 
