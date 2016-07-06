@@ -31,8 +31,21 @@ Page {
             id: listItem
             menu: contextMenuComponent
 
-            Label {
-                text: text11
+            Row {
+                x: Theme.horizontalPageMargin
+                anchors.verticalCenter: parent.verticalCenter
+                width: parent.width
+                Label {
+                    anchors.verticalCenter: parent.verticalCenter
+                    color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                    text: text11
+                    //font.strikeout: true
+                }
+                IconButton {
+                    anchors.right: parent.right
+                    anchors.verticalCenter: parent.verticalCenter
+                    icon.source: "image://theme/icon-s-new"
+                }
             }
 
             Component {
@@ -54,6 +67,8 @@ Page {
             }
         }
 
+        ViewPlaceholder{}
+
         PullDownMenu {
             MenuItem {
                 text: "Delete All Inactive"
@@ -65,5 +80,6 @@ Page {
                 text: "Sort Now"
             }
         }
+
     }
 }

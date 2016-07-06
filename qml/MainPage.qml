@@ -53,6 +53,9 @@ Page {
             }
 
             Label {
+                x: Theme.horizontalPageMargin
+                anchors.verticalCenter: parent.verticalCenter
+                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 text: model.text
             }
 
