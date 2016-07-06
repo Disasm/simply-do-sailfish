@@ -19,9 +19,6 @@ SOURCES += src/SimplyDo.cpp \
     src/MyModel.cpp
 
 OTHER_FILES += qml/SimplyDo.qml \
-    qml/cover/CoverPage.qml \
-    qml/pages/FirstPage.qml \
-    qml/pages/SecondPage.qml \
     rpm/SimplyDo.changes.in \
     rpm/SimplyDo.spec \
     rpm/SimplyDo.yaml \
