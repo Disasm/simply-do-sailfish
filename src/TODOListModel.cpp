@@ -61,8 +61,8 @@ void TODOListModel::setListId(int id)
 
         m_items.append(item);
     }
+    sort();
     endResetModel();
-    sortAndUpdate();
 }
 
 void TODOListModel::addItem(QString name)
@@ -106,6 +106,7 @@ void TODOListModel::toggleInactive(int index)
 void TODOListModel::removeInactive()
 {
     beginResetModel();
+
     int i = 0;
     while (i < m_items.size())
     {
@@ -118,12 +119,18 @@ void TODOListModel::removeInactive()
             i++;
         }
     }
+
     endResetModel();
+}
+
+void TODOListModel::sort()
+{
+    qSort(m_items.begin(), m_items.end(), SortComparator());
 }
 
 void TODOListModel::sortAndUpdate()
 {
     beginResetModel();
-    qSort(m_items.begin(), m_items.end(), SortComparator());
+    sort();
     endResetModel();
 }

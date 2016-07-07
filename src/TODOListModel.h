@@ -7,13 +7,15 @@ class TODOListModel : public QAbstractListModel
 {
     Q_OBJECT
 
-    enum CustomRole {
+    enum CustomRole
+    {
         InactiveRole = Qt::UserRole,
         StarredRole = Qt::UserRole+1,
     };
 
 public:
-    struct Item {
+    struct Item
+    {
         QString name;
         bool inactive;
         bool starred;
@@ -41,11 +43,12 @@ public slots:
 
     void removeInactive();
 
+    void sort();
+
     void sortAndUpdate();
 
 private:
     QList<Item> m_items;
-    //QStringList m_items;
 };
 
 #endif // TODOLISTMODEL_H
