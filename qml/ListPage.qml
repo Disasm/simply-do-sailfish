@@ -11,14 +11,14 @@ Page {
 
         placeholderText: "New Item Name"
         focus: false
+        labelVisible: false
     }
 
-    Button {
+    IconButton {
         id: btnAdd
         anchors.bottom: parent.bottom
         anchors.right: parent.right
-        preferredWidth: Theme.buttonWidthSmall
-        text: "Add"
+        icon.source: "image://theme/icon-m-add"
     }
 
     SilicaListView {
