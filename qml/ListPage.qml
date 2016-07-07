@@ -33,7 +33,7 @@ Page {
         width: parent.width
 
         header: PageHeader {
-            title: "TODO List"
+            title: listModel.listName
         }
 
         delegate: ListItem {

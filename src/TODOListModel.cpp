@@ -65,6 +65,14 @@ void TODOListModel::setListId(int id)
     }
     sort();
     endResetModel();
+
+    m_listName = QString("TODO List #%1").arg(id);
+    listNameChanged();
+}
+
+QString TODOListModel::listName()
+{
+    return m_listName;
 }
 
 void TODOListModel::addItem(QString name)

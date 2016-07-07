@@ -30,8 +30,16 @@ public:
 
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const;
 
+public:
+    Q_PROPERTY(QString listName READ listName NOTIFY listNameChanged);
+
+signals:
+    void listNameChanged();
+
 public slots:
     void setListId(int id);
+
+    QString listName();
 
     void addItem(QString name);
 
@@ -48,6 +56,7 @@ public slots:
     void sortAndUpdate();
 
 private:
+    QString     m_listName;
     QList<Item> m_items;
 };
 
