@@ -44,5 +44,6 @@ HEADERS += \
 
 DISTFILES += \
     qml/MainPage.qml \
-    qml/ListPage.qml
+    qml/ListPage.qml \
+    qml/SettingsPage.qml
 

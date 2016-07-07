@@ -78,6 +78,7 @@ Page {
             }
             MenuItem {
                 text: "Settings"
+                onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             MenuItem {
                 text: "Sort Now"
