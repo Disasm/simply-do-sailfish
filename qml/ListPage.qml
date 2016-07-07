@@ -66,6 +66,7 @@ Page {
                 ContextMenu {
                     MenuItem {
                         text: "Edit"
+                        enabled: false
                     }
                     MenuItem {
                         text: "Delete"
@@ -77,6 +78,7 @@ Page {
                     }
                     MenuItem {
                         text: "Move To"
+                        enabled: false
                     }
                 }
             }

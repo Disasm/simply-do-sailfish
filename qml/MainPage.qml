@@ -53,9 +53,11 @@ Page {
                 ContextMenu {
                     MenuItem {
                         text: "Edit"
+                        enabled: false
                     }
                     MenuItem {
                         text: "Delete"
+                        enabled: false
                     }
                 }
             }
