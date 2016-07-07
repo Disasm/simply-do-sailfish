@@ -48,6 +48,7 @@ Page {
                 text: model.text
                 elide: Text.ElideRight
                 font.strikeout: model.inactive
+                font.italic: model.inactive
             }
 
             IconButton {
@@ -57,6 +58,7 @@ Page {
 
                 icon.source: "image://theme/icon-s-new"
                 visible: model.starred
+                enabled: false
             }
 
             Component {
