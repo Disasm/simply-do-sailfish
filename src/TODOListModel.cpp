@@ -7,6 +7,8 @@ public:
     {
         if (!left.inactive && right.inactive) return true;
         if (left.inactive && !right.inactive) return false;
+        if (left.starred && !right.starred) return true;
+        if (!left.starred && right.starred) return false;
         return left.name < right.name;
     }
 };
