@@ -4,27 +4,6 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
-    ListModel {
-        id: mainModel
-
-        ListElement {
-            text: "TODO List 1"
-            }
-        ListElement {
-            text: "TODO List 2"
-        }
-        ListElement {
-            text: "TODO List 3"
-        }
-        ListElement {
-            text: "TODO List 4"
-        }
-        ListElement {
-            text: "TODO List With Very Very Very Long Description"
-        }
-    }
-
-
     TextField {
         id: listName
         anchors.bottom: parent.bottom
@@ -32,7 +11,6 @@ Page {
         anchors.right: btnAdd.left
 
         placeholderText: "New List Name"
-        focus: false
         labelVisible: false
     }
 
