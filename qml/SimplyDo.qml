@@ -34,6 +34,7 @@ import harbour.simplydo 1.0
 
 ApplicationWindow
 {
+    cover: null
     initialPage: Component { MainPage { } }
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
