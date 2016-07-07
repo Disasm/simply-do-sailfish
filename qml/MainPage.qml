@@ -26,6 +26,7 @@ Page {
     }
 
     SilicaListView {
+        id: listView
         model: globalModel
         anchors.top: parent.top
         anchors.bottom: btnAdd.top
@@ -66,6 +67,11 @@ Page {
                     }
                 }
             }
+        }
+
+        ViewPlaceholder {
+            enabled: listView.count == 0
+            text: "No lists"
         }
 
         PullDownMenu {

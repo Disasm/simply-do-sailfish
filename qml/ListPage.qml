@@ -27,6 +27,7 @@ Page {
     }
 
     SilicaListView {
+        id: listView
         model: listModel
         anchors.bottom: btnAdd.top
         anchors.top: parent.top
@@ -88,7 +89,10 @@ Page {
             }
         }
 
-        ViewPlaceholder{}
+        ViewPlaceholder {
+            enabled: listView.count == 0
+            text: "No items"
+        }
 
         PullDownMenu {
             MenuItem {
