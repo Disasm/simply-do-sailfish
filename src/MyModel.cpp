@@ -13,7 +13,7 @@ QHash<int, QByteArray> MyModel::roleNames() const {
 void MyModel::set_me(int index) {
     QStringList s;
     for(int i = 0; i < 4; i++) {
-        s << QString("B %1 %2").arg(index).arg(i);
+        s << QString("B %1 %2 Very Very Very Long Description").arg(index).arg(i);
     }
     setStringList(s);
 }
