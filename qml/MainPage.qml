@@ -19,6 +19,9 @@ Page {
         ListElement {
             text: "TODO List 4"
         }
+        ListElement {
+            text: "TODO List With Very Very Very Long Description"
+        }
     }
 
 
@@ -47,7 +50,6 @@ Page {
         delegate: ListItem {
             id: listItem
             menu: contextMenuComponent
-            //width: view.width
 
             onClicked: {
                 listModel.set_me(model.index);
@@ -56,9 +58,11 @@ Page {
 
             Label {
                 x: Theme.horizontalPageMargin
+                width: parent.width - 2*Theme.horizontalPageMargin
                 anchors.verticalCenter: parent.verticalCenter
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
                 text: model.text
+                elide: Text.ElideRight
             }
 
             Component {

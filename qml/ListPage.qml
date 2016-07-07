@@ -31,21 +31,24 @@ Page {
             id: listItem
             menu: contextMenuComponent
 
-            Row {
+            Label {
+                id: label
                 x: Theme.horizontalPageMargin
+                width: parent.width - Theme.horizontalPageMargin - star.width
                 anchors.verticalCenter: parent.verticalCenter
-                width: parent.width
-                Label {
-                    anchors.verticalCenter: parent.verticalCenter
-                    color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
-                    text: text11
-                    //font.strikeout: true
-                }
-                IconButton {
-                    anchors.right: parent.right
-                    anchors.verticalCenter: parent.verticalCenter
-                    icon.source: "image://theme/icon-s-new"
-                }
+                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+
+                text: text11
+                elide: Text.ElideRight
+                //font.strikeout: true
+            }
+
+            IconButton {
+                id: star
+                anchors.right: parent.right
+                anchors.verticalCenter: parent.verticalCenter
+
+                icon.source: "image://theme/icon-s-new"
             }
 
             Component {
