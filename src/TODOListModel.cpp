@@ -86,6 +86,8 @@ void TODOListModel::addItem(QString name)
 
 void TODOListModel::removeItem(int index)
 {
+    if (index < 0 || index >= m_items.size()) return;
+
     beginResetModel();
     m_items.removeAt(index);
     endResetModel();
@@ -93,6 +95,8 @@ void TODOListModel::removeItem(int index)
 
 void TODOListModel::toggleStar(int index)
 {
+    if (index < 0 || index >= m_items.size()) return;
+
     beginResetModel();
     m_items[index].starred = !m_items[index].starred;
     endResetModel();
@@ -100,6 +104,8 @@ void TODOListModel::toggleStar(int index)
 
 void TODOListModel::toggleInactive(int index)
 {
+    if (index < 0 || index >= m_items.size()) return;
+
     beginResetModel();
     m_items[index].inactive = !m_items[index].inactive;
     endResetModel();
