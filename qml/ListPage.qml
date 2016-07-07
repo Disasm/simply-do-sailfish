@@ -36,16 +36,18 @@ Page {
             id: listItem
             menu: contextMenuComponent
 
+            onClicked: listModel.toggleInactive(model.index)
+
             Label {
                 id: label
                 x: Theme.horizontalPageMargin
                 width: parent.width - Theme.horizontalPageMargin - star.width
                 anchors.verticalCenter: parent.verticalCenter
-                color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
+                color: listItem.highlighted ? Theme.highlightColor : (model.inactive ? Theme.secondaryColor : Theme.primaryColor)
 
                 text: model.text
                 elide: Text.ElideRight
-                //font.strikeout: true
+                font.strikeout: model.inactive
             }
 
             IconButton {
@@ -54,6 +56,7 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
 
                 icon.source: "image://theme/icon-s-new"
+                visible: model.starred
             }
 
             Component {
@@ -64,9 +67,11 @@ Page {
                     }
                     MenuItem {
                         text: "Delete"
+                        onClicked: listModel.removeItem(model.index)
                     }
                     MenuItem {
-                        text: "Add Star"
+                        text: model.starred ? "Remove Star" : "Add Star"
+                        onClicked: listModel.toggleStar(model.index)
                     }
                     MenuItem {
                         text: "Move To"
