@@ -32,6 +32,10 @@ Page {
         anchors.top: parent.top
         width: parent.width
 
+        header: PageHeader {
+            title: "TODO List"
+        }
+
         delegate: ListItem {
             id: listItem
             menu: contextMenuComponent

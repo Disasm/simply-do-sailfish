@@ -8,6 +8,10 @@ Page {
         anchors.fill: parent
 
         Column {
+            PageHeader {
+                title: "Settings"
+            }
+
             ComboBox {
                 width: page.width
                 label: "Item Sorting"

@@ -30,6 +30,11 @@ Page {
         anchors.top: parent.top
         anchors.bottom: btnAdd.top
         width: parent.width
+
+        header: PageHeader {
+            title: "Simply Do"
+        }
+
         delegate: ListItem {
             id: listItem
             menu: contextMenuComponent
