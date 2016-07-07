@@ -5,6 +5,7 @@ Page {
     id: page
 
     TextField {
+        id: itemName
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: btnAdd.left
@@ -19,6 +20,10 @@ Page {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         icon.source: "image://theme/icon-m-add"
+        onClicked: {
+            listModel.addItem(itemName.text)
+            itemName.text = ""
+        }
     }
 
     SilicaListView {
@@ -38,7 +43,7 @@ Page {
                 anchors.verticalCenter: parent.verticalCenter
                 color: listItem.highlighted ? Theme.highlightColor : Theme.primaryColor
 
-                text: text11
+                text: model.text
                 elide: Text.ElideRight
                 //font.strikeout: true
             }
@@ -75,6 +80,7 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: "Delete All Inactive"
+                onClicked: listModel.removeInactive()
             }
             MenuItem {
                 text: "Settings"
@@ -82,6 +88,7 @@ Page {
             }
             MenuItem {
                 text: "Sort Now"
+                onClicked: listModel.sortAndUpdate()
             }
         }
 

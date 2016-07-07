@@ -17,7 +17,8 @@ CONFIG += sailfishapp sql
 SOURCES += src/SimplyDo.cpp \
     src/DataManager.cpp \
     src/MyModel.cpp \
-    src/GlobalModel.cpp
+    src/GlobalModel.cpp \
+    src/TODOListModel.cpp
 
 OTHER_FILES += qml/SimplyDo.qml \
     rpm/SimplyDo.changes.in \
@@ -42,7 +43,8 @@ HEADERS += \
     src/DataManager.h \
     src/itemdesc.h \
     src/MyModel.h \
-    src/GlobalModel.h
+    src/GlobalModel.h \
+    src/TODOListModel.h
 
 DISTFILES += \
     qml/MainPage.qml \

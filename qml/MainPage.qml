@@ -35,7 +35,7 @@ Page {
             menu: contextMenuComponent
 
             onClicked: {
-                listModel.set_me(model.index);
+                listModel.setListId(model.index)
                 pageStack.push(Qt.resolvedUrl("ListPage.qml"))
             }
 

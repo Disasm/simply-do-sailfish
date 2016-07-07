@@ -38,11 +38,11 @@ ApplicationWindow
     allowedOrientations: Orientation.All
     _defaultPageOrientations: Orientation.All
 
-    MyModel {
-        id: listModel
-    }
     GlobalModel {
         id: globalModel
+    }
+    TODOListModel {
+        id: listModel
     }
 }
 
