@@ -26,6 +26,7 @@ Page {
 
 
     TextField {
+        id: listName
         anchors.bottom: parent.bottom
         anchors.left: parent.left
         anchors.right: btnAdd.left
@@ -40,10 +41,14 @@ Page {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         icon.source: "image://theme/icon-m-add"
+        onClicked: {
+            globalModel.addItem(listName.text)
+            listName.text = ""
+        }
     }
 
     SilicaListView {
-        model: mainModel
+        model: globalModel
         anchors.top: parent.top
         anchors.bottom: btnAdd.top
         width: parent.width

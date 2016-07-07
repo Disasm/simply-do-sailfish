@@ -31,10 +31,12 @@
 #include <QtQuick>
 #include <sailfishapp.h>
 #include "MyModel.h"
+#include "GlobalModel.h"
 
 int main(int argc, char *argv[])
 {
     qmlRegisterType<MyModel>("harbour.simplydo", 1, 0, "MyModel");
+    qmlRegisterType<GlobalModel>("harbour.simplydo", 1, 0, "GlobalModel");
 
     return SailfishApp::main(argc, argv);
 }

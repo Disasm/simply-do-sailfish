@@ -41,6 +41,9 @@ ApplicationWindow
     MyModel {
         id: listModel
     }
+    GlobalModel {
+        id: globalModel
+    }
 }
 
 
