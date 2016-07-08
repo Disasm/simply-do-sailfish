@@ -12,7 +12,9 @@
 # The name of your application
 TARGET = SimplyDo
 
-CONFIG += sailfishapp sql
+CONFIG += sailfishapp
+
+QT += sql
 
 SOURCES += src/SimplyDo.cpp \
     src/DataManager.cpp \
