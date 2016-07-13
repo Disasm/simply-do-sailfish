@@ -61,7 +61,7 @@ Page {
                 anchors.right: parent.right
                 anchors.verticalCenter: parent.verticalCenter
 
-                icon.source: "image://theme/icon-m-favorite"
+                icon.source: "image://theme/icon-s-favorite"
                 visible: model.starred
                 enabled: false
             }
