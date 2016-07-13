@@ -20,7 +20,9 @@ SOURCES += src/SimplyDo.cpp \
     src/DataManager.cpp \
     src/MyModel.cpp \
     src/GlobalModel.cpp \
-    src/TODOListModel.cpp
+    src/TODOListModel.cpp \
+    src/DbList.cpp \
+    src/DbItem.cpp
 
 OTHER_FILES += qml/SimplyDo.qml \
     rpm/SimplyDo.changes.in \
@@ -46,7 +48,9 @@ HEADERS += \
     src/itemdesc.h \
     src/MyModel.h \
     src/GlobalModel.h \
-    src/TODOListModel.h
+    src/TODOListModel.h \
+    src/DbList.h \
+    src/DbItem.h
 
 DISTFILES += \
     qml/MainPage.qml \

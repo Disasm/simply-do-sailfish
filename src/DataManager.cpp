@@ -3,6 +3,7 @@
 #include <QFileInfo>
 #include <QDir>
 #include <QtSql/QSqlQuery>
+#include <QVariant>
 
 #define DATABASE_NAME "simplydo.db"
 
@@ -38,4 +39,34 @@ DataManager::DataManager()
                   "star INTEGER"
                   ");");
     }
+}
+
+QList<DbList> DataManager::getAllLists()
+{
+    QList<DbList> result;
+
+    QSqlQuery query;
+    query.exec("SELECT id, label FROM lists");
+    while (query.next())
+    {
+        int id = query.value(0).toInt();
+        QString label = query.value(1).toString();
+        result.append(DbList(id, label));
+    }
+    return result;
+}
+
+DbList DataManager::getList(int id)
+{
+    QSqlQuery query;
+    query.prepare("SELECT label FROM lists where id=?");
+    query.bindValue(0, id);
+    query.exec();
+    while (query.next())
+    {
+        QString label = query.value(0).toString();
+        return DbList(id, label);
+    }
+    qFatal("List with id=%d is not found", id);
+    throw 0;
 }

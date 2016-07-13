@@ -2,6 +2,7 @@
 #define TODOLISTMODEL_H
 
 #include <QStringListModel>
+#include "DbItem.h"
 
 class TODOListModel : public QAbstractListModel
 {
@@ -56,8 +57,8 @@ public slots:
     void sortAndUpdate();
 
 private:
-    QString     m_listName;
-    QList<Item> m_items;
+    int             m_listId;
+    QList<DbItem>   m_items;
 };
 
 #endif // TODOLISTMODEL_H

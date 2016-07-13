@@ -1,15 +1,16 @@
 #include "TODOListModel.h"
+#include "DbList.h"
 
 class SortComparator
 {
 public:
-    bool operator()(const TODOListModel::Item &left, const TODOListModel::Item &right ) const
+    bool operator()(const DbItem &left, const DbItem &right ) const
     {
-        if (!left.inactive && right.inactive) return true;
-        if (left.inactive && !right.inactive) return false;
-        if (left.starred && !right.starred) return true;
-        if (!left.starred && right.starred) return false;
-        return left.name < right.name;
+        if (left.active() && !right.active()) return true;
+        if (!left.active() && right.active()) return false;
+        if (left.starred() && !right.starred()) return true;
+        if (!left.starred() && right.starred()) return false;
+        return left.label() < right.label();
     }
 };
 
@@ -28,6 +29,7 @@ QHash<int, QByteArray> TODOListModel::roleNames() const
 
 int TODOListModel::rowCount(const QModelIndex &parent) const
 {
+    Q_UNUSED(parent)
     return m_items.size();
 }
 
@@ -38,57 +40,49 @@ QVariant TODOListModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole)
     {
-        return m_items[row].name;
+        return m_items[row].label();
     }
     if (role == TODOListModel::InactiveRole)
     {
-        return m_items[row].inactive;
+        return !m_items[row].active();
     }
     if (role == TODOListModel::StarredRole)
     {
-        return m_items[row].starred;
+        return m_items[row].starred();
     }
+    return QVariant();
 }
 
 void TODOListModel::setListId(int id)
 {
-    beginResetModel();
-    m_items.clear();
-    for (int i = 0; i < 8; i++)
-    {
-        Item item;
-        item.name = QString("TODO Item #%1 of list %2").arg(i).arg(id);
-        item.inactive = (i % 2) == 1;
-        item.starred = (i % 3) == 0;
+    layoutAboutToBeChanged();
+    m_listId = id;
+    DbList list = DbList::get(m_listId);
 
-        m_items.append(item);
-    }
+    m_items = list.getAllItems();
     sort();
-    endResetModel();
+    layoutChanged();
 
-    m_listName = QString("TODO List #%1").arg(id);
     listNameChanged();
 }
 
 QString TODOListModel::listName()
 {
-    return m_listName;
+    DbList list = DbList::get(m_listId);
+    return list.label();
 }
 
 void TODOListModel::addItem(QString name)
 {
+    DbList list = DbList::get(m_listId);
     if (!name.isEmpty())
     {
-        beginResetModel();
+        layoutAboutToBeChanged();
 
-        Item item;
-        item.name = name;
-        item.inactive = false;
-        item.starred = false;
-
+        DbItem item = list.createItem(name, true, false);
         m_items.prepend(item);
 
-        endResetModel();
+        layoutChanged();
     }
 }
 
@@ -96,39 +90,45 @@ void TODOListModel::removeItem(int index)
 {
     if (index < 0 || index >= m_items.size()) return;
 
-    beginResetModel();
+    layoutAboutToBeChanged();
+
+    DbItem item = m_items[index];
     m_items.removeAt(index);
-    endResetModel();
+    item.remove();
+
+    layoutChanged();
 }
 
 void TODOListModel::toggleStar(int index)
 {
     if (index < 0 || index >= m_items.size()) return;
 
-    beginResetModel();
-    m_items[index].starred = !m_items[index].starred;
-    endResetModel();
+    layoutAboutToBeChanged();
+    m_items[index].setStarred(!m_items[index].starred());
+    layoutChanged();
 }
 
 void TODOListModel::toggleInactive(int index)
 {
     if (index < 0 || index >= m_items.size()) return;
 
-    beginResetModel();
-    m_items[index].inactive = !m_items[index].inactive;
-    endResetModel();
+    layoutAboutToBeChanged();
+    m_items[index].setActive(!m_items[index].active());
+    layoutChanged();
 }
 
 void TODOListModel::removeInactive()
 {
-    beginResetModel();
+    layoutAboutToBeChanged();
 
     int i = 0;
     while (i < m_items.size())
     {
-        if (m_items[i].inactive)
+        if (!m_items[i].active())
         {
+            DbItem item = m_items[i];
             m_items.removeAt(i);
+            item.remove();
         }
         else
         {
@@ -136,7 +136,7 @@ void TODOListModel::removeInactive()
         }
     }
 
-    endResetModel();
+    layoutChanged();
 }
 
 void TODOListModel::sort()
@@ -146,7 +146,7 @@ void TODOListModel::sort()
 
 void TODOListModel::sortAndUpdate()
 {
-    beginResetModel();
+    layoutAboutToBeChanged();
     sort();
-    endResetModel();
+    layoutChanged();
 }
