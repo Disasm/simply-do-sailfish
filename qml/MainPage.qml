@@ -4,6 +4,11 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    function addList() {
+        globalModel.addItem(listName.text)
+        listName.text = ""
+    }
+
     TextField {
         id: listName
         anchors.bottom: parent.bottom
@@ -12,6 +17,7 @@ Page {
 
         placeholderText: qsTr("New List Name")
         labelVisible: false
+        EnterKey.onClicked: addList()
     }
 
     IconButton {
@@ -19,10 +25,7 @@ Page {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         icon.source: "image://theme/icon-m-add"
-        onClicked: {
-            globalModel.addItem(listName.text)
-            listName.text = ""
-        }
+        onClicked: addList()
     }
 
     SilicaListView {
