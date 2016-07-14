@@ -24,7 +24,7 @@ SOURCES += src/SimplyDo.cpp \
     src/DbList.cpp \
     src/DbItem.cpp
 
-OTHER_FILES += qml/SimplyDo.qml \
+OTHER_FILES += \
     rpm/SimplyDo.changes.in \
     rpm/SimplyDo.spec \
     rpm/SimplyDo.yaml \
@@ -55,5 +55,6 @@ DISTFILES += \
     qml/MainPage.qml \
     qml/ListPage.qml \
     qml/SettingsPage.qml \
-    harbour-simplydo.desktop
+    harbour-simplydo.desktop \
+    qml/harbour-simplydo.qml
 
