@@ -9,12 +9,10 @@
 
 DataManager::DataManager()
 {
-    QString dirPath = QStandardPaths::writableLocation(QStandardPaths::DataLocation);
-    QDir dir(dirPath);
-    dir = QDir(dir.absoluteFilePath("harbour-simplydo"));
-    dir.mkpath(dir.absolutePath());
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
 
     QString dbPath = dir.absoluteFilePath(DATABASE_NAME);
+    qWarning("path: %s", qPrintable(dbPath));
 
     bool firstInit = !QFileInfo(dbPath).exists();
 

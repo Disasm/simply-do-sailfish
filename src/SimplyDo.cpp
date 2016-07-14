@@ -37,11 +37,22 @@
 
 int main(int argc, char *argv[])
 {
+    QGuiApplication* app = SailfishApp::application(argc, argv);
+    app->setApplicationName("harbour-simplydo");
+    app->setOrganizationName("harbour-simplydo");
+
+    QDir dir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
+    dir.mkpath(dir.absolutePath());
+
     DataManager dm;
     qmlRegisterType<MyModel>("harbour.simplydo", 1, 0, "MyModel");
     qmlRegisterType<GlobalModel>("harbour.simplydo", 1, 0, "GlobalModel");
     qmlRegisterType<TODOListModel>("harbour.simplydo", 1, 0, "TODOListModel");
 
-    return SailfishApp::main(argc, argv);
+    QQuickView* view = SailfishApp::createView();
+    view->setSource(SailfishApp::pathTo("qml/harbour-simplydo.qml"));
+    view->show();
+
+    return app->exec();
 }
 
