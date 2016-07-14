@@ -10,7 +10,7 @@
 #   - translation filenames have to be changed
 
 # The name of your application
-TARGET = SimplyDo
+TARGET = harbour-simplydo
 
 CONFIG += sailfishapp
 
@@ -28,8 +28,7 @@ OTHER_FILES += qml/SimplyDo.qml \
     rpm/SimplyDo.changes.in \
     rpm/SimplyDo.spec \
     rpm/SimplyDo.yaml \
-    translations/*.ts \
-    SimplyDo.desktop
+    translations/*.ts
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
 
@@ -55,5 +54,6 @@ HEADERS += \
 DISTFILES += \
     qml/MainPage.qml \
     qml/ListPage.qml \
-    qml/SettingsPage.qml
+    qml/SettingsPage.qml \
+    harbour-simplydo.desktop
 
