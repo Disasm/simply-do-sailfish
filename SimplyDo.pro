@@ -25,9 +25,9 @@ SOURCES += src/SimplyDo.cpp \
     src/DbItem.cpp
 
 OTHER_FILES += \
-    rpm/SimplyDo.changes.in \
-    rpm/SimplyDo.spec \
-    rpm/SimplyDo.yaml \
+    rpm/harbour-simplydo.changes.in \
+    rpm/harbour-simplydo.spec \
+    rpm/harbour-simplydo.yaml \
     translations/*.ts
 
 SAILFISHAPP_ICONS = 86x86 108x108 128x128 256x256
