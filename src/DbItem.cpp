@@ -29,7 +29,10 @@ void DbItem::setStarred(bool starred)
 
 void DbItem::remove()
 {
-    //
+    QSqlQuery query;
+    query.prepare("DELETE FROM items WHERE id=?");
+    query.bindValue(0, m_id);
+    query.exec();
 }
 
 void DbItem::updateField(const char *name, const QVariant &value)
