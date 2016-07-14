@@ -15,7 +15,7 @@ Page {
         anchors.left: parent.left
         anchors.right: btnAdd.left
 
-        placeholderText: "New Item Name"
+        placeholderText: qsTr("New Item Name")
         focus: false
         labelVisible: false
         EnterKey.onClicked: addItem()
@@ -48,7 +48,7 @@ Page {
             id: listItem
             menu: contextMenuComponent
             function remove() {
-                remorseAction("Deleting", function() { listModel.removeItem(index) })
+                remorseAction(qsTr("Deleting"), function() { listModel.removeItem(index) })
             }
             ListView.onRemove: animateRemoval()
 
@@ -81,19 +81,19 @@ Page {
                 id: contextMenuComponent
                 ContextMenu {
                     MenuItem {
-                        text: "Edit"
+                        text: qsTr("Edit")
                         enabled: false
                     }
                     MenuItem {
-                        text: "Delete"
+                        text: qsTr("Delete")
                         onClicked: remove()
                     }
                     MenuItem {
-                        text: model.starred ? "Remove Star" : "Add Star"
+                        text: model.starred ? qsTr("Remove Star") : qsTr("Add Star")
                         onClicked: listModel.toggleStar(model.index)
                     }
                     MenuItem {
-                        text: "Move To"
+                        text: qsTr("Move To")
                         enabled: false
                     }
                 }
@@ -102,20 +102,20 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: "No items"
+            text: qsTr("No items")
         }
 
         PullDownMenu {
             MenuItem {
-                text: "Delete All Inactive"
-                onClicked: removeInactiveRemorse.execute("Removing inactive", function() { listModel.removeInactive() } )
+                text: qsTr("Delete All Inactive")
+                onClicked: removeInactiveRemorse.execute(qsTr("Removing inactive"), function() { listModel.removeInactive() } )
             }
             MenuItem {
-                text: "Settings"
+                text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
             MenuItem {
-                text: "Sort Now"
+                text: qsTr("Sort Now")
                 onClicked: listModel.sortAndUpdate()
             }
         }

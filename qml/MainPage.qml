@@ -10,7 +10,7 @@ Page {
         anchors.left: parent.left
         anchors.right: btnAdd.left
 
-        placeholderText: "New List Name"
+        placeholderText: qsTr("New List Name")
         labelVisible: false
     }
 
@@ -33,14 +33,14 @@ Page {
         width: parent.width
 
         header: PageHeader {
-            title: "Simply Do"
+            title: qsTr("Simply Do")
         }
 
         delegate: ListItem {
             id: listItem
             menu: contextMenuComponent
             function remove() {
-                remorseAction("Deleting", function() { globalModel.removeItem(index) })
+                remorseAction(qsTr("Deleting"), function() { globalModel.removeItem(index) })
             }
             ListView.onRemove: animateRemoval()
 
@@ -62,11 +62,11 @@ Page {
                 id: contextMenuComponent
                 ContextMenu {
                     MenuItem {
-                        text: "Edit"
+                        text: qsTr("Edit")
                         enabled: false
                     }
                     MenuItem {
-                        text: "Delete"
+                        text: qsTr("Delete")
                         onClicked: remove()
                     }
                 }
@@ -75,12 +75,12 @@ Page {
 
         ViewPlaceholder {
             enabled: listView.count == 0
-            text: "No lists"
+            text: qsTr("No lists")
         }
 
         PullDownMenu {
             MenuItem {
-                text: "Settings"
+                text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
             }
         }
