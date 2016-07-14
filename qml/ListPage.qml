@@ -108,7 +108,7 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: qsTr("Delete All Inactive")
-                onClicked: removeInactiveRemorse.execute(qsTr("Removing inactive"), function() { listModel.removeInactive() } )
+                onClicked: removeInactiveRemorse.execute(qsTr("Deleting inactive"), function() { listModel.removeInactive() } )
             }
             MenuItem {
                 text: qsTr("Settings")
