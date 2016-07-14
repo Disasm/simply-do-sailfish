@@ -4,6 +4,11 @@ import Sailfish.Silica 1.0
 Page {
     id: page
 
+    function addItem() {
+        listModel.addItem(itemName.text)
+        itemName.text = ""
+    }
+
     TextField {
         id: itemName
         anchors.bottom: parent.bottom
@@ -13,6 +18,7 @@ Page {
         placeholderText: "New Item Name"
         focus: false
         labelVisible: false
+        EnterKey.onClicked: addItem()
     }
 
     IconButton {
@@ -20,10 +26,7 @@ Page {
         anchors.bottom: parent.bottom
         anchors.right: parent.right
         icon.source: "image://theme/icon-m-add"
-        onClicked: {
-            listModel.addItem(itemName.text)
-            itemName.text = ""
-        }
+        onClicked: addItem()
     }
 
     RemorsePopup {
