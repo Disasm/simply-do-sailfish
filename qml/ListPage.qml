@@ -26,6 +26,10 @@ Page {
         }
     }
 
+    RemorsePopup {
+        id: removeInactiveRemorse
+    }
+
     SilicaListView {
         id: listView
         model: listModel
@@ -40,6 +44,10 @@ Page {
         delegate: ListItem {
             id: listItem
             menu: contextMenuComponent
+            function remove() {
+                remorseAction("Deleting", function() { listModel.removeItem(index) })
+            }
+            ListView.onRemove: animateRemoval()
 
             onClicked: listModel.toggleInactive(model.index)
 
@@ -75,7 +83,7 @@ Page {
                     }
                     MenuItem {
                         text: "Delete"
-                        onClicked: listModel.removeItem(model.index)
+                        onClicked: remove()
                     }
                     MenuItem {
                         text: model.starred ? "Remove Star" : "Add Star"
@@ -97,7 +105,7 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: "Delete All Inactive"
-                onClicked: listModel.removeInactive()
+                onClicked: removeInactiveRemorse.execute("Removing inactive", function() { listModel.removeInactive() } )
             }
             MenuItem {
                 text: "Settings"
