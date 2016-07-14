@@ -39,6 +39,10 @@ Page {
         delegate: ListItem {
             id: listItem
             menu: contextMenuComponent
+            function remove() {
+                remorseAction("Deleting", function() { globalModel.removeItem(index) })
+            }
+            ListView.onRemove: animateRemoval()
 
             onClicked: {
                 listModel.setListId(model.id)
@@ -63,7 +67,7 @@ Page {
                     }
                     MenuItem {
                         text: "Delete"
-                        enabled: false
+                        onClicked: remove()
                     }
                 }
             }
