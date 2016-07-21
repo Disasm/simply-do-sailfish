@@ -22,6 +22,8 @@ public slots:
 
     void removeItem(int index);
 
+    void setLabel(int index, const QString &label);
+
 private:
     QList<DbList>   m_lists;
 };

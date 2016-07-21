@@ -66,3 +66,12 @@ void GlobalModel::removeItem(int index)
 
     layoutChanged();
 }
+
+void GlobalModel::setLabel(int index, const QString &label)
+{
+    layoutAboutToBeChanged();
+
+    m_lists[index].setLabel(label);
+
+    layoutChanged();
+}
