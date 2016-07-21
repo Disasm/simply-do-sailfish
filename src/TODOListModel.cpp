@@ -99,6 +99,15 @@ void TODOListModel::removeItem(int index)
     layoutChanged();
 }
 
+void TODOListModel::setLabel(int index, const QString &label)
+{
+    layoutAboutToBeChanged();
+
+    m_items[index].setLabel(label);
+
+    layoutChanged();
+}
+
 void TODOListModel::toggleStar(int index)
 {
     if (index < 0 || index >= m_items.size()) return;

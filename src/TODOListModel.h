@@ -46,6 +46,8 @@ public slots:
 
     void removeItem(int index);
 
+    void setLabel(int index, const QString &label);
+
     void toggleStar(int index);
 
     void toggleInactive(int index);

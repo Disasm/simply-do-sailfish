@@ -77,12 +77,19 @@ Page {
                 enabled: false
             }
 
+            function openEditDialog() {
+                var dialog = pageStack.push(editItemNameDialog, { name: model.text })
+                dialog.accepted.connect(function() {
+                    listModel.setLabel(model.index, dialog.name)
+                })
+            }
+
             Component {
                 id: contextMenuComponent
                 ContextMenu {
                     MenuItem {
                         text: qsTr("Edit")
-                        enabled: false
+                        onClicked: openEditDialog()
                     }
                     MenuItem {
                         text: qsTr("Delete")
@@ -120,5 +127,40 @@ Page {
             }
         }
 
+    }
+
+    Component {
+        id: editItemNameDialog
+
+        Dialog {
+            id: dialog
+            property string name
+
+            canAccept: newItemName.text.length > 0
+            acceptDestinationAction: PageStackAction.Pop
+
+            onOpened: newItemName.text = name
+
+            onDone: {
+                if (result == DialogResult.Accepted) {
+                    name = newItemName.text
+                }
+            }
+
+            DialogHeader {
+                id: dialogHeader
+                title: qsTr("New Item Name")
+            }
+
+            TextField {
+                id: newItemName
+                anchors.top: dialogHeader.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                labelVisible: false
+                EnterKey.onClicked: dialog.accept()
+            }
+        }
     }
 }
