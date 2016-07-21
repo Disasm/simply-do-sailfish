@@ -61,12 +61,19 @@ Page {
                 elide: Text.ElideRight
             }
 
+            function openEditDialog() {
+                var dialog = pageStack.push(editListNameDialog, { name: model.text })
+                dialog.accepted.connect(function() {
+                    globalModel.setLabel(model.index, dialog.name)
+                })
+            }
+
             Component {
                 id: contextMenuComponent
                 ContextMenu {
                     MenuItem {
                         text: qsTr("Edit")
-                        enabled: false
+                        onClicked: openEditDialog()
                     }
                     MenuItem {
                         text: qsTr("Delete")
@@ -85,6 +92,41 @@ Page {
             MenuItem {
                 text: qsTr("Settings")
                 onClicked: pageStack.push(Qt.resolvedUrl("SettingsPage.qml"))
+            }
+        }
+    }
+
+    Component {
+        id: editListNameDialog
+
+        Dialog {
+            id: dialog
+            property string name
+
+            canAccept: newListName.text.length > 0
+            acceptDestinationAction: PageStackAction.Pop
+
+            onOpened: newListName.text = name
+
+            onDone: {
+                if (result == DialogResult.Accepted) {
+                    name = newListName.text
+                }
+            }
+
+            DialogHeader {
+                id: dialogHeader
+                title: qsTr("New List Name")
+            }
+
+            TextField {
+                id: newListName
+                anchors.top: dialogHeader.bottom
+                anchors.left: parent.left
+                anchors.right: parent.right
+
+                labelVisible: false
+                EnterKey.onClicked: dialog.accept()
             }
         }
     }
