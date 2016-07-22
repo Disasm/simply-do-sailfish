@@ -18,7 +18,6 @@ QT += sql
 
 SOURCES += src/SimplyDo.cpp \
     src/DataManager.cpp \
-    src/MyModel.cpp \
     src/GlobalModel.cpp \
     src/TODOListModel.cpp \
     src/DbList.cpp \
@@ -45,7 +44,6 @@ TRANSLATIONS += translations/harbour-simplydo-de.ts
 HEADERS += \
     src/DataManager.h \
     src/itemdesc.h \
-    src/MyModel.h \
     src/GlobalModel.h \
     src/TODOListModel.h \
     src/DbList.h \

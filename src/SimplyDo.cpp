@@ -30,7 +30,6 @@
 
 #include <QtQuick>
 #include <sailfishapp.h>
-#include "MyModel.h"
 #include "GlobalModel.h"
 #include "TODOListModel.h"
 #include "DataManager.h"
@@ -45,7 +44,6 @@ int main(int argc, char *argv[])
     dir.mkpath(dir.absolutePath());
 
     DataManager dm;
-    qmlRegisterType<MyModel>("harbour.simplydo", 1, 0, "MyModel");
     qmlRegisterType<GlobalModel>("harbour.simplydo", 1, 0, "GlobalModel");
     qmlRegisterType<TODOListModel>("harbour.simplydo", 1, 0, "TODOListModel");
 
