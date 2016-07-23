@@ -99,35 +99,8 @@ Page {
     Component {
         id: editListNameDialog
 
-        Dialog {
-            id: dialog
-            property string name
-
-            canAccept: newListName.text.length > 0
-            acceptDestinationAction: PageStackAction.Pop
-
-            onOpened: newListName.text = name
-
-            onDone: {
-                if (result == DialogResult.Accepted) {
-                    name = newListName.text
-                }
-            }
-
-            DialogHeader {
-                id: dialogHeader
-                title: qsTr("New List Name")
-            }
-
-            TextField {
-                id: newListName
-                anchors.top: dialogHeader.bottom
-                anchors.left: parent.left
-                anchors.right: parent.right
-
-                labelVisible: false
-                EnterKey.onClicked: dialog.accept()
-            }
+        EditNameDialog {
+            titleText: qsTr("New List Name")
         }
     }
 }

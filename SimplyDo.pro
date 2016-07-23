@@ -55,5 +55,6 @@ DISTFILES += \
     qml/SettingsPage.qml \
     harbour-simplydo.desktop \
     qml/harbour-simplydo.qml \
-    qml/MoveToListDialog.qml
+    qml/MoveToListDialog.qml \
+    qml/EditNameDialog.qml
 
