@@ -13,20 +13,13 @@ Page {
         id: itemName
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.right: btnAdd.left
+        anchors.right: parent.right
 
         placeholderText: qsTr("New Item Name")
         focus: false
         labelVisible: false
         EnterKey.onClicked: addItem()
-    }
-
-    IconButton {
-        id: btnAdd
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        icon.source: "image://theme/icon-m-add"
-        onClicked: addItem()
+        EnterKey.text: qsTr("Add")
     }
 
     RemorsePopup {
@@ -36,7 +29,7 @@ Page {
     SilicaListView {
         id: listView
         model: listModel
-        anchors.bottom: btnAdd.top
+        anchors.bottom: itemName.top
         anchors.top: parent.top
         width: parent.width
 

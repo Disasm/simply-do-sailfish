@@ -13,26 +13,19 @@ Page {
         id: listName
         anchors.bottom: parent.bottom
         anchors.left: parent.left
-        anchors.right: btnAdd.left
+        anchors.right: parent.right
 
         placeholderText: qsTr("New List Name")
         labelVisible: false
         EnterKey.onClicked: addList()
-    }
-
-    IconButton {
-        id: btnAdd
-        anchors.bottom: parent.bottom
-        anchors.right: parent.right
-        icon.source: "image://theme/icon-m-add"
-        onClicked: addList()
+        EnterKey.text: qsTr("Add")
     }
 
     SilicaListView {
         id: listView
         model: globalModel
         anchors.top: parent.top
-        anchors.bottom: btnAdd.top
+        anchors.bottom: listName.top
         width: parent.width
 
         header: PageHeader {
