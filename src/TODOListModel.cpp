@@ -66,6 +66,11 @@ void TODOListModel::setListId(int id)
     listNameChanged();
 }
 
+int TODOListModel::listId()
+{
+    return m_listId;
+}
+
 QString TODOListModel::listName()
 {
     DbList list = DbList::get(m_listId);
@@ -123,6 +128,19 @@ void TODOListModel::toggleInactive(int index)
 
     layoutAboutToBeChanged();
     m_items[index].setActive(!m_items[index].active());
+    layoutChanged();
+}
+
+void TODOListModel::moveToList(int index, int listId)
+{
+    if (listId == m_listId) return;
+
+    layoutAboutToBeChanged();
+
+    DbItem item = m_items[index];
+    m_items.removeAt(index);
+    item.setListId(listId);
+
     layoutChanged();
 }
 

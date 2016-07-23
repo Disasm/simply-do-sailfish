@@ -40,6 +40,8 @@ signals:
 public slots:
     void setListId(int id);
 
+    int listId();
+
     QString listName();
 
     void addItem(QString name);
@@ -51,6 +53,8 @@ public slots:
     void toggleStar(int index);
 
     void toggleInactive(int index);
+
+    void moveToList(int index, int listId);
 
     void removeInactive();
 

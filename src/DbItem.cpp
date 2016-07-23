@@ -27,6 +27,11 @@ void DbItem::setStarred(bool starred)
     updateField("star", m_starred);
 }
 
+void DbItem::setListId(int id)
+{
+    updateField("list_id", id);
+}
+
 void DbItem::remove()
 {
     QSqlQuery query;

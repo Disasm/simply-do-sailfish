@@ -23,6 +23,8 @@ public:
     void setActive(bool active);
     void setStarred(bool starred);
 
+    void setListId(int id);
+
     void remove();
 
 private:
