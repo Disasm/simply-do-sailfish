@@ -16,6 +16,7 @@ Page {
         anchors.right: parent.right
 
         placeholderText: qsTr("New List Name")
+        focus: false
         labelVisible: false
         EnterKey.onClicked: addList()
         EnterKey.text: qsTr("Add")
