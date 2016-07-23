@@ -6,29 +6,28 @@ Dialog {
     property string name
     property string titleText: "New Name"
 
-    canAccept: newListName.text.length > 0
+    canAccept: newName.text.length > 0
     acceptDestinationAction: PageStackAction.Pop
 
-    onOpened: newListName.text = name
+    onOpened: newName.text = name
 
     onDone: {
         if (result == DialogResult.Accepted) {
-            name = newListName.text
+            name = newName.text
         }
     }
 
     DialogHeader {
         id: dialogHeader
-        title: titleText
     }
 
     TextField {
-        id: newListName
+        id: newName
         anchors.top: dialogHeader.bottom
         anchors.left: parent.left
         anchors.right: parent.right
 
-        labelVisible: false
+        label: titleText
         EnterKey.onClicked: dialog.accept()
     }
 }
