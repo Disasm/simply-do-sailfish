@@ -84,6 +84,13 @@ Page {
                 })
             }
 
+            function openMoveToDialog() {
+                var dialog = pageStack.push(moveToListDialog, { listId: listModel.listId() })
+                dialog.accepted.connect(function() {
+                    listModel.moveToList(model.index, dialog.listId)
+                })
+            }
+
             Component {
                 id: contextMenuComponent
                 ContextMenu {
@@ -101,7 +108,7 @@ Page {
                     }
                     MenuItem {
                         text: qsTr("Move To")
-                        enabled: false
+                        onClicked: openMoveToDialog()
                     }
                 }
             }
@@ -162,5 +169,9 @@ Page {
                 EnterKey.onClicked: dialog.accept()
             }
         }
+    }
+
+    MoveToListDialog {
+        id: moveToListDialog
     }
 }
