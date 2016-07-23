@@ -9,7 +9,10 @@ Dialog {
     canAccept: newName.text.length > 0
     acceptDestinationAction: PageStackAction.Pop
 
-    onOpened: newName.text = name
+    onOpened: {
+        newName.text = name
+        newName.forceActiveFocus()
+    }
 
     onDone: {
         if (result == DialogResult.Accepted) {
