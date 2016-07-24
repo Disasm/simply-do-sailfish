@@ -21,7 +21,8 @@ SOURCES += src/SimplyDo.cpp \
     src/GlobalModel.cpp \
     src/TODOListModel.cpp \
     src/DbList.cpp \
-    src/DbItem.cpp
+    src/DbItem.cpp \
+    src/BackupModel.cpp
 
 OTHER_FILES += \
     rpm/harbour-simplydo.changes.in \
@@ -47,7 +48,8 @@ HEADERS += \
     src/GlobalModel.h \
     src/TODOListModel.h \
     src/DbList.h \
-    src/DbItem.h
+    src/DbItem.h \
+    src/BackupModel.h
 
 DISTFILES += \
     qml/MainPage.qml \
@@ -56,5 +58,6 @@ DISTFILES += \
     harbour-simplydo.desktop \
     qml/harbour-simplydo.qml \
     qml/MoveToListDialog.qml \
-    qml/EditNameDialog.qml
+    qml/EditNameDialog.qml \
+    qml/SelectBackupDialog.qml
 

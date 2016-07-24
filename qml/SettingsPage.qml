@@ -65,17 +65,18 @@ Page {
 
                 Notification {
                     id: backupNotification
-                    summary: qsTr("Backup completed")
-                    previewSummary: qsTr("Backup completed")
                 }
 
                 onClicked: {
                     var backupName = dataManager.generateBackupName()
                     if (dataManager.backup(backupName)) {
+                        backupNotification.summary = qsTr("Backup completed")
                         backupNotification.body = qsTr("Backed up to %1").arg("~/"+backupName)
                     } else {
-                        backupNotification.body = qsTr("Backup failed")
+                        backupNotification.summary = qsTr("Backup failed")
+                        backupNotification.body = ""
                     }
+                    backupNotification.previewSummary = backupNotification.summary
                     backupNotification.previewBody = backupNotification.body
 
                     backupNotification.publish()
@@ -90,8 +91,38 @@ Page {
                     color: listItem2.highlighted ? Theme.highlightColor : Theme.primaryColor
                     text: "Restore"
                 }
+
+                Notification {
+                    id: restoreNotification
+                }
+
+                onClicked: {
+                    var dialog = pageStack.push(selectBackupDialog)
+                    dialog.accepted.connect(function() {
+                        console.warn(dialog.backupPath)
+                        if (dialog.backupPath.length > 0) {
+                            if (dataManager.restore(dialog.backupPath)) {
+                                restoreNotification.summary = qsTr("Restore completed")
+                                restoreNotification.body = qsTr("Database restored from backup %1").arg(dialog.backupPath)
+                            } else {
+                                restoreNotification.summary = qsTr("Restore failed")
+                                restoreNotification.body = ""
+                            }
+                            restoreNotification.previewSummary = restoreNotification.summary
+                            restoreNotification.previewBody = restoreNotification.body
+
+                            restoreNotification.publish()
+                        }
+                        globalModel.refresh();
+                    })
+                }
             }
         }
+    }
+
+    Component {
+        id: selectBackupDialog
+        SelectBackupDialog { }
     }
 
     DataManager {

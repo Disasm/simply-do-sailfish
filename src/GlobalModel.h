@@ -24,6 +24,8 @@ public slots:
 
     void setLabel(int index, const QString &label);
 
+    void refresh();
+
 private:
     QList<DbList>   m_lists;
 };

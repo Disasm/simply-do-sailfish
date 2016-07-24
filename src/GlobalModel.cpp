@@ -75,3 +75,13 @@ void GlobalModel::setLabel(int index, const QString &label)
 
     layoutChanged();
 }
+
+void GlobalModel::refresh()
+{
+    layoutAboutToBeChanged();
+
+    m_lists = DbList::getAll();
+    qSort(m_lists);
+
+    layoutChanged();
+}

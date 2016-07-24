@@ -32,6 +32,7 @@
 #include <sailfishapp.h>
 #include "GlobalModel.h"
 #include "TODOListModel.h"
+#include "BackupModel.h"
 #include "DataManager.h"
 
 int main(int argc, char *argv[])
@@ -47,6 +48,7 @@ int main(int argc, char *argv[])
 
     qmlRegisterType<GlobalModel>("harbour.simplydo", 1, 0, "GlobalModel");
     qmlRegisterType<TODOListModel>("harbour.simplydo", 1, 0, "TODOListModel");
+    qmlRegisterType<BackupModel>("harbour.simplydo", 1, 0, "BackupModel");
     qmlRegisterType<DataManager>("harbour.simplydo", 1, 0, "DataManager");
 
     QQuickView* view = SailfishApp::createView();
