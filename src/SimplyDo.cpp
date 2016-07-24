@@ -43,9 +43,11 @@ int main(int argc, char *argv[])
     QDir dir(QStandardPaths::writableLocation(QStandardPaths::DataLocation));
     dir.mkpath(dir.absolutePath());
 
-    DataManager dm;
+    DataManager::initialize();
+
     qmlRegisterType<GlobalModel>("harbour.simplydo", 1, 0, "GlobalModel");
     qmlRegisterType<TODOListModel>("harbour.simplydo", 1, 0, "TODOListModel");
+    qmlRegisterType<DataManager>("harbour.simplydo", 1, 0, "DataManager");
 
     QQuickView* view = SailfishApp::createView();
     view->setSource(SailfishApp::pathTo("qml/harbour-simplydo.qml"));

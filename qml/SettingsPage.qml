@@ -1,5 +1,7 @@
 import QtQuick 2.0
 import Sailfish.Silica 1.0
+import org.nemomobile.notifications 1.0
+import harbour.simplydo 1.0
 
 Page {
     id: page
@@ -60,6 +62,24 @@ Page {
                     color: listItem1.highlighted ? Theme.highlightColor : Theme.primaryColor
                     text: "Backup Now"
                 }
+
+                Notification {
+                    id: backupNotification
+                    summary: qsTr("Backup completed")
+                    previewSummary: qsTr("Backup completed")
+                }
+
+                onClicked: {
+                    var backupName = dataManager.generateBackupName()
+                    if (dataManager.backup(backupName)) {
+                        backupNotification.body = qsTr("Backed up to %1").arg("~/"+backupName)
+                    } else {
+                        backupNotification.body = qsTr("Backup failed")
+                    }
+                    backupNotification.previewBody = backupNotification.body
+
+                    backupNotification.publish()
+                }
             }
 
             ListItem {
@@ -72,6 +92,10 @@ Page {
                 }
             }
         }
+    }
+
+    DataManager {
+        id: dataManager
     }
 }
 
