@@ -11,7 +11,7 @@ BackupModel::BackupModel()
     {
         QFileInfo fi(path);
 
-        m_items.append(qMakePair(fi.fileName(), path));
+        m_items.append(qMakePair(fi.baseName(), path));
     }
 }
 
