@@ -5,7 +5,7 @@ Page {
     id: page
 
     function addItem() {
-        listModel.addItem(itemName.text)
+        itemModel.addItem(itemName.text)
         itemName.text = ""
     }
 
@@ -28,24 +28,24 @@ Page {
 
     SilicaListView {
         id: listView
-        model: listModel
+        model: itemModel
         anchors.bottom: itemName.top
         anchors.top: parent.top
         width: parent.width
 
         header: PageHeader {
-            title: listModel.listName
+            title: itemModel.listName
         }
 
         delegate: ListItem {
             id: listItem
             menu: contextMenuComponent
             function remove() {
-                remorseAction(qsTr("Deleting"), function() { listModel.removeItem(index) })
+                remorseAction(qsTr("Deleting"), function() { itemModel.removeItem(index) })
             }
             ListView.onRemove: animateRemoval()
 
-            onClicked: listModel.toggleInactive(model.index)
+            onClicked: itemModel.toggleInactive(model.index)
 
             Label {
                 id: label
@@ -73,14 +73,14 @@ Page {
             function openEditDialog() {
                 var dialog = pageStack.push(editItemNameDialog, { name: model.text })
                 dialog.accepted.connect(function() {
-                    listModel.setLabel(model.index, dialog.name)
+                    itemModel.setLabel(model.index, dialog.name)
                 })
             }
 
             function openMoveToDialog() {
-                var dialog = pageStack.push(moveToListDialog, { listId: listModel.listId() })
+                var dialog = pageStack.push(moveToListDialog, { listId: itemModel.listId() })
                 dialog.accepted.connect(function() {
-                    listModel.moveToList(model.index, dialog.listId)
+                    itemModel.moveToList(model.index, dialog.listId)
                 })
             }
 
@@ -97,7 +97,7 @@ Page {
                     }
                     MenuItem {
                         text: model.starred ? qsTr("Remove Star") : qsTr("Add Star")
-                        onClicked: listModel.toggleStar(model.index)
+                        onClicked: itemModel.toggleStar(model.index)
                     }
                     MenuItem {
                         text: qsTr("Move To")
@@ -115,7 +115,7 @@ Page {
         PullDownMenu {
             MenuItem {
                 text: qsTr("Delete All Inactive")
-                onClicked: removeInactiveRemorse.execute(qsTr("Deleting inactive"), function() { listModel.removeInactive() } )
+                onClicked: removeInactiveRemorse.execute(qsTr("Deleting inactive"), function() { itemModel.removeInactive() } )
             }
             MenuItem {
                 text: qsTr("Settings")
@@ -123,7 +123,7 @@ Page {
             }
             MenuItem {
                 text: qsTr("Sort Now")
-                onClicked: listModel.sortAndUpdate()
+                onClicked: itemModel.sortAndUpdate()
             }
         }
 

@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
 
     DataManager::initialize();
 
-    qmlRegisterType<GlobalModel>("harbour.simplydo", 1, 0, "GlobalModel");
-    qmlRegisterType<TODOListModel>("harbour.simplydo", 1, 0, "TODOListModel");
+    qmlRegisterType<ListModel>("harbour.simplydo", 1, 0, "ListModel");
+    qmlRegisterType<ItemModel>("harbour.simplydo", 1, 0, "ItemModel");
     qmlRegisterType<BackupModel>("harbour.simplydo", 1, 0, "BackupModel");
     qmlRegisterType<DataManager>("harbour.simplydo", 1, 0, "DataManager");
 

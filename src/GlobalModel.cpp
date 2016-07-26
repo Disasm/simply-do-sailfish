@@ -5,13 +5,13 @@ bool operator<(const DbList &left, const DbList &right)
     return left.label() < right.label();
 }
 
-GlobalModel::GlobalModel()
+ListModel::ListModel()
 {
     m_lists = DbList::getAll();
     qSort(m_lists);
 }
 
-QHash<int, QByteArray> GlobalModel::roleNames() const
+QHash<int, QByteArray> ListModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[Qt::DisplayRole] = "text";
@@ -19,14 +19,14 @@ QHash<int, QByteArray> GlobalModel::roleNames() const
     return roles;
 }
 
-int GlobalModel::rowCount(const QModelIndex &parent) const
+int ListModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
 
     return m_lists.size();
 }
 
-QVariant GlobalModel::data(const QModelIndex &index, int role) const
+QVariant ListModel::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
     if (row < 0 || row >= m_lists.size()) return QVariant();
@@ -42,7 +42,7 @@ QVariant GlobalModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-void GlobalModel::addItem(QString name)
+void ListModel::addItem(QString name)
 {
     if (!name.isEmpty())
     {
@@ -56,7 +56,7 @@ void GlobalModel::addItem(QString name)
     }
 }
 
-void GlobalModel::removeItem(int index)
+void ListModel::removeItem(int index)
 {
     layoutAboutToBeChanged();
 
@@ -67,7 +67,7 @@ void GlobalModel::removeItem(int index)
     layoutChanged();
 }
 
-void GlobalModel::setLabel(int index, const QString &label)
+void ListModel::setLabel(int index, const QString &label)
 {
     layoutAboutToBeChanged();
 
@@ -76,7 +76,7 @@ void GlobalModel::setLabel(int index, const QString &label)
     layoutChanged();
 }
 
-void GlobalModel::refresh()
+void ListModel::refresh()
 {
     layoutAboutToBeChanged();
 

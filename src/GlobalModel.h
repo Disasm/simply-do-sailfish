@@ -5,11 +5,11 @@
 #include <QList>
 #include "DbList.h"
 
-class GlobalModel : public QAbstractListModel
+class ListModel : public QAbstractListModel
 {
     Q_OBJECT
 public:
-    GlobalModel();
+    ListModel();
 
     QHash<int, QByteArray> roleNames() const;
 

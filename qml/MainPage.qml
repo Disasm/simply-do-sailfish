@@ -5,7 +5,7 @@ Page {
     id: page
 
     function addList() {
-        globalModel.addItem(listName.text)
+        listModel.addItem(listName.text)
         listName.text = ""
     }
 
@@ -24,7 +24,7 @@ Page {
 
     SilicaListView {
         id: listView
-        model: globalModel
+        model: listModel
         anchors.top: parent.top
         anchors.bottom: listName.top
         width: parent.width
@@ -37,12 +37,12 @@ Page {
             id: listItem
             menu: contextMenuComponent
             function remove() {
-                remorseAction(qsTr("Deleting"), function() { globalModel.removeItem(index) })
+                remorseAction(qsTr("Deleting"), function() { listModel.removeItem(index) })
             }
             ListView.onRemove: animateRemoval()
 
             onClicked: {
-                listModel.setListId(model.id)
+                itemModel.setListId(model.id)
                 pageStack.push(Qt.resolvedUrl("ListPage.qml"))
             }
 
@@ -58,7 +58,7 @@ Page {
             function openEditDialog() {
                 var dialog = pageStack.push(editListNameDialog, { name: model.text })
                 dialog.accepted.connect(function() {
-                    globalModel.setLabel(model.index, dialog.name)
+                    listModel.setLabel(model.index, dialog.name)
                 })
             }
 

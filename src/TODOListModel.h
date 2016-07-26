@@ -4,7 +4,7 @@
 #include <QStringListModel>
 #include "DbItem.h"
 
-class TODOListModel : public QAbstractListModel
+class ItemModel : public QAbstractListModel
 {
     Q_OBJECT
 
@@ -23,7 +23,7 @@ public:
     };
 
 public:
-    TODOListModel();
+    ItemModel();
 
     QHash<int, QByteArray> roleNames() const;
 

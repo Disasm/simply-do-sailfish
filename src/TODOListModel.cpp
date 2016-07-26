@@ -14,26 +14,26 @@ public:
     }
 };
 
-TODOListModel::TODOListModel()
+ItemModel::ItemModel()
 {
 }
 
-QHash<int, QByteArray> TODOListModel::roleNames() const
+QHash<int, QByteArray> ItemModel::roleNames() const
 {
     QHash<int, QByteArray> roles;
     roles[Qt::DisplayRole] = "text";
-    roles[TODOListModel::InactiveRole] = "inactive";
-    roles[TODOListModel::StarredRole] = "starred";
+    roles[ItemModel::InactiveRole] = "inactive";
+    roles[ItemModel::StarredRole] = "starred";
     return roles;
 }
 
-int TODOListModel::rowCount(const QModelIndex &parent) const
+int ItemModel::rowCount(const QModelIndex &parent) const
 {
     Q_UNUSED(parent)
     return m_items.size();
 }
 
-QVariant TODOListModel::data(const QModelIndex &index, int role) const
+QVariant ItemModel::data(const QModelIndex &index, int role) const
 {
     int row = index.row();
     if (row < 0 || row >= m_items.size()) return QVariant();
@@ -42,18 +42,18 @@ QVariant TODOListModel::data(const QModelIndex &index, int role) const
     {
         return m_items[row].label();
     }
-    if (role == TODOListModel::InactiveRole)
+    if (role == ItemModel::InactiveRole)
     {
         return !m_items[row].active();
     }
-    if (role == TODOListModel::StarredRole)
+    if (role == ItemModel::StarredRole)
     {
         return m_items[row].starred();
     }
     return QVariant();
 }
 
-void TODOListModel::setListId(int id)
+void ItemModel::setListId(int id)
 {
     layoutAboutToBeChanged();
     m_listId = id;
@@ -66,18 +66,18 @@ void TODOListModel::setListId(int id)
     listNameChanged();
 }
 
-int TODOListModel::listId()
+int ItemModel::listId()
 {
     return m_listId;
 }
 
-QString TODOListModel::listName()
+QString ItemModel::listName()
 {
     DbList list = DbList::get(m_listId);
     return list.label();
 }
 
-void TODOListModel::addItem(QString name)
+void ItemModel::addItem(QString name)
 {
     DbList list = DbList::get(m_listId);
     if (!name.isEmpty())
@@ -91,7 +91,7 @@ void TODOListModel::addItem(QString name)
     }
 }
 
-void TODOListModel::removeItem(int index)
+void ItemModel::removeItem(int index)
 {
     if (index < 0 || index >= m_items.size()) return;
 
@@ -104,7 +104,7 @@ void TODOListModel::removeItem(int index)
     layoutChanged();
 }
 
-void TODOListModel::setLabel(int index, const QString &label)
+void ItemModel::setLabel(int index, const QString &label)
 {
     layoutAboutToBeChanged();
 
@@ -113,7 +113,7 @@ void TODOListModel::setLabel(int index, const QString &label)
     layoutChanged();
 }
 
-void TODOListModel::toggleStar(int index)
+void ItemModel::toggleStar(int index)
 {
     if (index < 0 || index >= m_items.size()) return;
 
@@ -122,7 +122,7 @@ void TODOListModel::toggleStar(int index)
     layoutChanged();
 }
 
-void TODOListModel::toggleInactive(int index)
+void ItemModel::toggleInactive(int index)
 {
     if (index < 0 || index >= m_items.size()) return;
 
@@ -131,7 +131,7 @@ void TODOListModel::toggleInactive(int index)
     layoutChanged();
 }
 
-void TODOListModel::moveToList(int index, int listId)
+void ItemModel::moveToList(int index, int listId)
 {
     if (listId == m_listId) return;
 
@@ -144,7 +144,7 @@ void TODOListModel::moveToList(int index, int listId)
     layoutChanged();
 }
 
-void TODOListModel::removeInactive()
+void ItemModel::removeInactive()
 {
     layoutAboutToBeChanged();
 
@@ -166,12 +166,12 @@ void TODOListModel::removeInactive()
     layoutChanged();
 }
 
-void TODOListModel::sort()
+void ItemModel::sort()
 {
     qSort(m_items.begin(), m_items.end(), SortComparator());
 }
 
-void TODOListModel::sortAndUpdate()
+void ItemModel::sortAndUpdate()
 {
     layoutAboutToBeChanged();
     sort();

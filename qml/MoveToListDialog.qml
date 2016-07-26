@@ -15,7 +15,7 @@ Component {
         }
 
         SilicaListView {
-            model: globalModel
+            model: listModel
             anchors.top: dialogHeader.bottom
             anchors.bottom: parent.bottom
             width: parent.width
@@ -39,8 +39,8 @@ Component {
             }
         }
 
-        GlobalModel {
-            id: globalModel
+        ListModel {
+            id: listModel
         }
     }
 }
