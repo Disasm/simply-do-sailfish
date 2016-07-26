@@ -56,9 +56,10 @@ Page {
             }
 
             function openEditDialog() {
+                var index = model.index
                 var dialog = pageStack.push(editListNameDialog, { name: model.text })
                 dialog.accepted.connect(function() {
-                    listModel.setLabel(model.index, dialog.name)
+                    listModel.setLabel(index, dialog.name)
                 })
             }
 
