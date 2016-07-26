@@ -129,12 +129,9 @@ Page {
 
     }
 
-    Component {
+    EditNameDialog {
         id: editItemNameDialog
-
-        EditNameDialog {
-            titleText: qsTr("New Item Name")
-        }
+        titleText: qsTr("New Item Name")
     }
 
     MoveToListDialog {

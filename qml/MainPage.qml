@@ -90,12 +90,9 @@ Page {
         }
     }
 
-    Component {
+    EditNameDialog {
         id: editListNameDialog
-
-        EditNameDialog {
-            titleText: qsTr("New List Name")
-        }
+        titleText: qsTr("New List Name")
     }
 }
 
